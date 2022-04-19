@@ -12,9 +12,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  hardware.cpu.intel.updateMicrocode = true;
+  
   # Automatic Upgrades
   system.autoUpgrade.enable = true;
+
+  # Enable DBus
+  services.dbus.enable = true;
   
   # HostName
   networking.hostName = "NixOS";
@@ -29,11 +33,16 @@
   };
   hardware.pulseaudio.enable = false;
   
+  environment.systemPackages = with pkgs; [
+  	zsh
+  ];
+  
   # Use zsh by default
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
   	enable = true;
   };
+  
   # Installing some font
   fonts.fonts = with pkgs; [
   	noto-fonts
@@ -66,4 +75,3 @@
 
   system.stateVersion = "22.05";
 }
-
