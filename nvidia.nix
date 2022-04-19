@@ -19,10 +19,11 @@ in
       vulkan-tools
       glmark2
     ];
-
+    
+    hardware.nvidia.powerManagement.enable = false;
     hardware.nvidia.modesetting.enable = true;
     hardware.nvidia.package = nvidiaPackage;
-    hardware.nvidia.powerManagement.enable = false;
+    hardware.opengl.enable = true;
 
     services.xserver = {
       videoDrivers = [ "nvidia" ];
