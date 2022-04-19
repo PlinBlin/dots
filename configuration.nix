@@ -43,6 +43,12 @@
   programs.zsh = {
   	enable = true;
   };
+
+  users.extraUsers.username = {
+     password = " ";
+     shell = "${pkgs.zsh}/bin/zsh";
+     group = "wheel";
+   };
   
   # Installing some font
   fonts.fonts = with pkgs; [
