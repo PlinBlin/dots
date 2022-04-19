@@ -11,12 +11,6 @@ let
   extraEnv = { WLR_NO_HARDWARE_CURSORS = "1"; };
 in
 {
-  config = {
-    home-manager.users.cole = { pkgs, ... }: {
-      wayland.windowManager.sway = {
-        extraOptions = [ "--unsupported-gpu" ];
-      };
-    };
     environment.variables = extraEnv;
     environment.sessionVariables = extraEnv;
 
@@ -33,7 +27,5 @@ in
     services.xserver = {
       videoDrivers = [ "nvidia" ];
       displayManager.gdm.wayland = true;
-      displayManager.gdm.nvidiaWayland = true;
     };
-  };
 }
