@@ -67,6 +67,8 @@
   # Needed for flatpak
   xdg.portal.enable = true;
   services = {
+    xserver.enable = true;
+
     # Enable the GNOME Desktop Environment.
     xserver.displayManager.gdm.enable = true;
     xserver.desktopManager.gnome.enable = true;
