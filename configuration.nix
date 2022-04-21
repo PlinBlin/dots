@@ -4,7 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./nix-conf/nvidia.nix
+      ./nvidia-configuration.nix
     ];
   # Allow install proprietary pkgs (NVidia driver)
   nixpkgs.config.allowUnfree = true;
@@ -62,7 +62,5 @@
     flatpak.enable = true;
   };
   
-  environment.gnome.excludePackages = [ pkgs.gnome.cheese pkgs.gnome-photos pkgs.gnome.gnome-music pkgs.epiphany pkgs.evince pkgs.gnome.gnome-characters pkgs.gnome.totem pkgs.gnome.tali pkgs.gnome.iagno pkgs.gnome.hitori pkgs.gnome.atomix pkgs.gnome-tour  pkgs.gnome.geary pkgs.gnome.gnome-maps pkgs.gnome.gnome-weather pkgs.gnome.gnome-clocks pkgs.gnome.gnome-contacts ];
-
   system.stateVersion = "22.05";
 }
