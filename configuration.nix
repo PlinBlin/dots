@@ -43,6 +43,12 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
   	enable = true;
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "zsh-autosuggestions" ];
+      theme = "robbyrussell";
+    };
+
   };
 
   users.extraUsers.username = {
