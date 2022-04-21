@@ -6,7 +6,7 @@
       ./hardware-configuration.nix
       ./nix-conf/nvidia.nix
     ];
-  # Allow install proprietary pkgs (NVIDIA)
+  # Allow install proprietary pkgs (NVidia driver)
   nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
@@ -17,12 +17,17 @@
   
   # Automatic Upgrades
   system.autoUpgrade.enable = true;
-
-  # Enable DBus
-  services.dbus.enable = true;
+  system.autoUpgrade.allowReboot = true;
   
   # HostName
   networking.hostName = "NixOS";
+
+  # Set your time zone.
+  time.timeZone = "Asia/Krasnoyarsk";
+  
+  # Network
+  networking.useDHCP = false;
+  networking.interfaces.enp5s0.useDHCP = true;
   
   # Enable pipewire
   services.pipewire = {
@@ -33,10 +38,6 @@
     #jack.enable = true;
   };
   hardware.pulseaudio.enable = false;
-  
-  environment.systemPackages = with pkgs; [
-  	zsh
-  ];
   
   # Use zsh by default
   users.defaultUserShell = pkgs.zsh;
@@ -49,23 +50,7 @@
      shell = "${pkgs.zsh}/bin/zsh";
      group = "wheel";
    };
-  
-  # Installing some font
-  fonts.fonts = with pkgs; [
-  	noto-fonts
-  	noto-fonts-cjk
-  	noto-fonts-emoji
-  ];
 
-  # Set your time zone.
-  time.timeZone = "Asia/Krasnoyarsk";
-  
-  # Network
-  networking.useDHCP = false;
-  networking.interfaces.enp5s0.useDHCP = true;
-
-  # Needed for flatpak
-  xdg.portal.enable = true;
   services = {
     xserver.enable = true;
 
