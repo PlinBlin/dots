@@ -6,30 +6,32 @@
       ./hardware-configuration.nix
       ./nvidia-configuration.nix
     ];
-  # Allow install proprietary pkgs (NVidia driver)
+
   nixpkgs.config.allowUnfree = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  hardware.cpu.intel.updateMicrocode = true;
-  
-  # Automatic Upgrades
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
-  
-  # HostName
-  networking.hostName = "NixOS";
-
-  # Set your time zone.
   time.timeZone = "Asia/Krasnoyarsk";
+
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   
-  # Network
-  networking.useDHCP = false;
-  networking.interfaces.enp5s0.useDHCP = true;
+  system = {
+    autoUpgrade.enable = true;
+    autoUpgrade.allowReboot = true;
+  };
+
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    pulseaudio.enable = false;
+  };
   
-  # Enable pipewire
+  networking = {
+    useDHCP = false;
+    hostName = "NixOS";
+    interfaces.enp5s0.useDHCP = true;
+  };
+  
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -37,28 +39,24 @@
     pulse.enable = true;
     #jack.enable = true;
   };
-  hardware.pulseaudio.enable = false;
   
-  # Use zsh by default
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
   	enable = true;
   };
 
   users.extraUsers.username = {
-     password = " ";
-     shell = "${pkgs.zsh}/bin/zsh";
-     group = "wheel";
+    password = " ";
+    shell = "${pkgs.zsh}/bin/zsh";
+    group = "wheel";
    };
 
   services = {
     xserver.enable = true;
 
-    # Enable the GNOME Desktop Environment.
     xserver.displayManager.gdm.enable = true;
     xserver.desktopManager.gnome.enable = true;
     
-    # Enable Flatpak
     flatpak.enable = true;
   };
   
