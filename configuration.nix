@@ -27,9 +27,8 @@
   };
   
   networking = {
-    useDHCP = false;
     hostName = "NixOS";
-    interfaces.enp5s0.useDHCP = true;
+    networkmanager.enable = true;
   };
   
   services.pipewire = {
@@ -45,22 +44,23 @@
   	enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "zsh-autosuggestions" ];
+      plugins = [ "git" ];
       theme = "robbyrussell";
     };
 
   };
 
-  users.extraUsers.username = {
+  users.users.username = {
     password = " ";
     shell = "${pkgs.zsh}/bin/zsh";
-    group = "wheel";
+    extraGroups = [ "wheel" ];
    };
 
   services = {
     xserver.enable = true;
 
     xserver.displayManager.gdm.enable = true;
+    xserver.displayManager.gdm.wayland = true;
     xserver.desktopManager.gnome.enable = true;
     
     flatpak.enable = true;
