@@ -25,8 +25,5 @@ in
     hardware.nvidia.package = nvidiaPackage;
     hardware.opengl.enable = true;
 
-    services.xserver = {
-      videoDrivers = [ "nvidia" ];
-      displayManager.gdm.wayland = true;
-    };
+    services.xserver.videoDrivers = [ "nvidia" ];
 }
