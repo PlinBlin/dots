@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./nvidia-configuration.nix
+      ./desktop.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -77,15 +78,9 @@
     extraGroups = [ "wheel" ];
    };
 
-  services = {
-    xserver.enable = true;
-
-    xserver.displayManager.gdm.enable = true;
-    xserver.displayManager.gdm.wayland = true;
-    xserver.desktopManager.gnome.enable = true;
-    
-    flatpak.enable = true;
-  };
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  services.flatpak.enable = true;
   
   system.stateVersion = "22.05";
 }
