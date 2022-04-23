@@ -41,7 +41,7 @@
   
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
-  	enable = true;
+    enable = true;
     ohMyZsh = {
       enable = true;
       plugins = [ "git" ];
