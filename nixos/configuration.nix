@@ -44,6 +44,7 @@
 
   environment.systemPackages = with pkgs; [
     neovim
+    steam-run
   ];
   
   services.pipewire = {
