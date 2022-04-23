@@ -16,9 +16,19 @@
     efi.canTouchEfiVariables = true;
   };
   
+  nix = {
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 7d";
+      dates = "weekly";
+    };
+  };
+
   system = {
-    autoUpgrade.enable = true;
-    autoUpgrade.allowReboot = true;
+    autoUpgrade = {
+      enable = true;
+      channel = "https://nixos.org/channels/nixos-unstable";
+    };
   };
 
   hardware = {
