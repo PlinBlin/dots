@@ -40,6 +40,10 @@
     hostName = "NixOS";
     networkmanager.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    neovim
+  ];
   
   services.pipewire = {
     enable = true;
@@ -48,7 +52,14 @@
     pulse.enable = true;
     #jack.enable = true;
   };
-  
+
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+  ];
+
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
     enable = true;
