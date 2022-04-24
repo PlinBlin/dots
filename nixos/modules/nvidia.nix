@@ -23,6 +23,7 @@ in
     hardware.nvidia.powerManagement.enable = false;
     hardware.nvidia.modesetting.enable = true;
     hardware.nvidia.package = nvidiaPackage;
+    hardware.opengl.driSupport32Bit = true;
     hardware.opengl.enable = true;
 
     services.xserver.videoDrivers = [ "nvidia" ];
