@@ -3,6 +3,7 @@
 {
   imports = [
     ./modules/nvidia.nix
+    ./profile/gaming.nix
     ./profile/desktop.nix
     ./hardware-configuration.nix
   ];
