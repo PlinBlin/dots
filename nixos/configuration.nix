@@ -68,7 +68,7 @@ in
 
   xdg.portal = {
   	enable = true;
-  	gtkUsePortal = true:
+  	gtkUsePortal = true;
   };
 
   hardware = {
@@ -79,7 +79,7 @@ in
     nvidia.package = nvidiaPackage;
     opengl.driSupport32Bit = true;
     opengl.enable = true;
-  }
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.macit = {
@@ -132,4 +132,5 @@ in
   	};
   };
 
+  nixpkgs.config.allowUnfree = true;
 }
