@@ -68,7 +68,6 @@ in
 
   xdg.portal = {
   	enable = true;
-  	gtkUsePortal = true;
   };
 
   hardware = {
@@ -96,7 +95,10 @@ in
   # $ nix search wget
   environment = {
     systemPackages = with pkgs; [
+      tdesktop
+      neofetch
       firefox
+      polymc
       steam
       gimp
       wget
@@ -104,6 +106,7 @@ in
       gnome.gnome-tweaks
       gnomeExtensions.appindicator
       gnomeExtensions.blur-my-shell
+      gnomeExtensions.burn-my-windows
     ];
     gnome.excludePackages = with pkgs; [
       gnome.cheese
@@ -118,9 +121,10 @@ in
       gnome-tour
       gnome.geary
     ];
-    variables = {
+    sessionVariables = {
     	MOZ_ENABLE_WAYLAND = "1";
     	QT_QPA_PLATFORM = "wayland";
+        GTK_USE_PORTAL = "1";
     };
   };
 
